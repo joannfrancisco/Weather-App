@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Weather Forecast</h1>
+    <form method="GET" action="/">
+        <input type="text" name="city" placeholder="Enter city..." required>
+        <button type="submit">Search</button>
+    </form>
+
+    <% if (locals.forecast) { %>
+        <div class="weather">
+            <h2>Weekly Forecast for <span><%= forecast.city %></span></h2>
+            <div class="forecast-day">
+                <% forecast.days.forEach(day => { %>
+                    <div class="glass-card">
+                        <p><strong>
+                            <%= new Date(day.date).toLocaleDateString('en-US', { weekday: 'long' }) %>
+                        </strong></p>
+                        <p><strong>
+                            <%= new Date(day.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) %>
+                        </strong></p>
+                        <div class="center">
+                            <% if (day.weathercode < 3) { %> 
+                                <div class="animation sunny" data-type="sunny" style="height: 150x; width: 150px;"></div>
+                            <% } else if (day.weathercode < 50) { %> 
+                                <div class="animation cloudy" data-type="cloudy" style="height: 170x; width: 170px;"></div> 
+                            <% } else { %> 
+                                <div class="animation rainy" data-type="rainy" style="height: 100x; width: 100px; margin: 20px;"></div> 
+                            <% } %>
+                  
+                            <p class="forecast">Max Temp: <%= day.maxTemp %>°C</p>
+                            <p class="forecast">Min Temp: <%= day.minTemp %>°C</p>
+                            <p class="forecast">Wind: <%= day.windspeed %> km/h</p>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    <% } else { %>
+        <p class="error"><%= error %></p>
+    <% } %>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+    <script>
+      document.querySelectorAll('.animation').forEach((el) => {
+        const type = el.getAttribute('data-type');
+        let path = '';
+    
+        if (type === 'sunny') {
+          path = '/animations/sunny.json';
+        } else if (type === 'cloudy') {
+          path = '/animations/cloudy.json';
+        } else if (type === 'rainy') {
+          path = '/animations/rainy.json';
+        }
+    
+        lottie.loadAnimation({
+          container: el,
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path: path
+        });
+      });
+    </script>
+   
+    <footer >
+        <h3>© 2025 | Jo Ann Francisco</h3>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,180 @@
+/* Reset some defaults */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background: linear-gradient(-45deg, #3a7bd5, #00d2ff, #3a7bd5, #00d2ff);
+    background-size: 400% 400%;
+    animation: gradientMove 10s ease infinite;
+    min-height: 100vh;
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  @keyframes gradientMove {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+    
+  /* Title */
+  h1 {
+    font-family: "Abril Fatface", serif;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 2px;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+  }
+  span {
+    font-weight: 800;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+  }
+  .error {
+    font-weight: 800;
+    font-size: 1.5rem;
+    margin-bottom: 60vh;
+    color: rgb(156, 16, 16);
+  }
+  
+  /* Search form */
+  form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  input[type="text"] {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    width: 250px;
+    font-size: 1rem;
+  }
+  
+  button {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #003d80;
+  }
+  
+  /* Forecast container */
+  .weather {
+    max-width: 1100px;
+    width: 100%;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+    color: hsla(0, 0%, 100%, 0.90);
+  }
+  h3 {
+    font-weight: 300;
+    letter-spacing: 6px;
+    font-size: 0.8rem;
+    margin: 30px 0 10px 0;
+}
+  
+  /* Flex container for cards */
+  .forecast-day {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  /* Glassmorphism card */
+  .glass-card {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 20px;
+    width: 250px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInUp 0.6s ease-in-out;
+  }
+  
+  /* Hover effect */
+  .glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Animation */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+ .cloudy {
+    margin-left: 10%;
+ }
+  
+  /* Responsive tweaks */
+  @media (max-width: 600px) {
+    .glass-card {
+      width: 90%;
+    }
+  
+    input[type="text"] {
+      width: 100%;
+    }
+  
+    h1 {
+      font-size: 2rem;
+    }
+    .cloudy {
+        margin: 0;
+    }
+  }
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.forecast {
+    color: rgba(255, 255, 255, 0.90);
+}
+p {
+    margin: 5px 0;
+}
